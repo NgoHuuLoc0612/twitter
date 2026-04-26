@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "twitter-automation"
+version = "1.0.0"
+description = "Comprehensive Twitter automation library: auto-follow, quote tweets, crypto alerts, Product Hunt, Hacker News, CVE alerts"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["twitter", "automation", "crypto", "cve", "hacker-news", "product-hunt", "bot"]
+
+dependencies = [
+    "requests",
+    "requests-oauthlib",
+    "websocket-client",
+]
+
+[project.optional-dependencies]
+dotenv = ["python-dotenv"]
+toml   = ["tomli; python_version < '3.11'"]
+all    = [
+    "python-dotenv",
+    "tomli; python_version < '3.11'",
+    "websocket-client",
+]
+
+[project.scripts]
+twitter-cli = "twitter.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["twitter*"]
+
+[tool.setuptools.package-data]
+twitter = ["py.typed"]
